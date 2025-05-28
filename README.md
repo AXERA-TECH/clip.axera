@@ -27,9 +27,11 @@ python export_onnx.py
 
 
 #### 量化数据集准备
-- image数据
+- image数据:
+
 下载[dataset_v04.zip](https://github.com/user-attachments/files/20480889/dataset_v04.zip)或自行准备
-- text数据
+
+- text数据:
     ```
     python gen_text_calibration_data.py
     cd dataset
@@ -37,7 +39,7 @@ python export_onnx.py
     ```
 最终得到两个数据集：
 
-\- dataset_v04.zip
+\- dataset/dataset_v04.zip
 
 \- dataset/text_quant_data.zip
 
