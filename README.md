@@ -56,7 +56,7 @@ pulsar2 build --config build_config/clip_vit_l14_336px_image_encoder_all_u16_fc_
 pulsar2 build --config build_config/clip_vit_l14_336px_text_encoder_u16.json --input clip_vit_l14_336px_text_encoder.onnx --output_dir build_output/text_encoder --output_name clip_vit_l14_336px_text_encoder_u16.axmodel
 ```
 编译完成后得到两个axmodel模型：
-
+（给出了u16和混合精度两种image encoder的config）
 \- clip_vit_l14_336px_image_encoder_all_u16_fc_u8.axmodel
 
 \- clip_vit_l14_336px_text_encoder_u16.axmodel
@@ -66,7 +66,6 @@ pulsar2 build --config build_config/clip_vit_l14_336px_text_encoder_u16.json --i
 需基于[PyAXEngine](https://github.com/AXERA-TECH/pyaxengine)在AX650N上进行部署,安装完成后运行main.py文件，得到以下输出demo
 ```shell
 $ python main.py 
-python main.py
 [INFO] Available providers:  ['AxEngineExecutionProvider']
 [INFO] Using provider: AxEngineExecutionProvider
 [INFO] Chip type: ChipType.MC50
