@@ -2,8 +2,9 @@ import cv2
 import numpy as np
 import glob
 import pandas as pd
-import pyaxengine.axengine as ort
+import axengine as ort
 import Tokenizer
+import copy
 
 def softmax(x):
     e_x = np.exp(x - np.max(x))
@@ -15,7 +16,7 @@ def get_tokenizer():
     return tokenizer
 
 def get_image_encoder() -> ort.InferenceSession:
-    image_encoder = ort.InferenceSession("ViT-L_14@336px/image_u16.axmodel")
+    image_encoder = ort.InferenceSession("clip_vit_l14_336px_image_encoder_all_u16_fc_u8.axmodel")
 
     for input in image_encoder.get_inputs():
         print(input.name, input.shape, input.dtype)
@@ -26,7 +27,7 @@ def get_image_encoder() -> ort.InferenceSession:
     return image_encoder
 
 def get_text_encoder() -> ort.InferenceSession:
-    text_encoder = ort.InferenceSession("ViT-L_14@336px/text_u16.axmodel")
+    text_encoder = ort.InferenceSession("clip_vit_l14_336px_text_encoder_u16.axmodel")
 
     for input in text_encoder.get_inputs():
         print(input.name, input.shape, input.dtype)
