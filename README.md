@@ -55,9 +55,12 @@ pulsar2 build --config build_config/clip_vit_l14_336px_image_encoder_all_u16_fc_
 # text encoder
 pulsar2 build --config build_config/clip_vit_l14_336px_text_encoder_u16.json --input clip_vit_l14_336px_text_encoder.onnx --output_dir build_output/text_encoder --output_name clip_vit_l14_336px_text_encoder_u16.axmodel
 ```
-编译完成后得到两个axmodel模型：
 
 （给出了u16和混合精度两种image encoder的config）
+
+编译完成后得到两个axmodel模型：
+
+
 
 \- clip_vit_l14_336px_image_encoder_all_u16_fc_u8.axmodel
 
