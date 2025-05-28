@@ -1,0 +1,52 @@
+{ 
+  "model_type": "ONNX", 
+  "npu_mode": "NPU3", 
+  "target_hardware": "AX650",
+  "quant": { 
+    "input_configs":[ 
+     { 
+        "tensor_name": "DEFAULT",
+        "calibration_dataset": "dataset/dataset_v04.zip",
+        "calibration_size": 32, 
+        "calibration_mean": [122.8, 116.7 ,104.1],
+        "calibration_std": [ 68.5, 66.6, 70.3 ]
+      } 
+    ], 
+	  "layer_configs": [
+      {
+        "op_types": [
+          "Softmax",
+          "LayerNormalization",
+          "Add",
+          "Concat",
+          "Conv",
+          "MatMul",
+          "Mul",
+          "Swish"
+        ],
+        "data_type": "U16"
+      }
+    ],
+    "enable_smooth_quant":true,
+    "smooth_quant_strength": 0.75,
+    "calibration_method":"MinMax", 
+    "precision_analysis": true, 
+    "precision_analysis_method": "EndToEnd", 
+	  "precision_analysis_mode": "Reference",
+    "conv_bias_data_type": "FP32"
+  },
+  "input_processors":[ 
+    {
+      "tensor_name": "DEFAULT",
+      "tensor_format": "RGB",
+      "tensor_layout": "NCHW",
+      "src_layout": "NCHW",
+      "src_dtype": "FP32",
+      "mean": [0, 0, 0],
+      "std": [1, 1, 1]
+    }
+  ], 
+  "compiler":{ 
+    "static_batch_sizes":[1]
+  } 
+} 
