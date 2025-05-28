@@ -92,8 +92,7 @@ if __name__ == "__main__":
     for image_path in image_list:
         img = cv2.imread(image_path)
         data = preprocess_image(img)
-        img_feat = image_encoder.run(None, {"input.1": data})[0]
-        img_features.append(copy.deepcopy(img_feat))
+        img_features.append(image_encoder.run(None, {"input.1": data})[0])
     img_features = np.concatenate(img_features, axis=0)
     print(img_features.shape)
     
@@ -101,8 +100,7 @@ if __name__ == "__main__":
     text_features = []
     for text in texts:
         t = tokenizer.encode_text(text)
-        text_feat = text_encoder.run(None, {"texts": np.array(t).reshape(1, -1).astype(np.int32)})[0]
-        text_features.append(copy.deepcopy(text_feat))
+        text_features.append(text_encoder.run(None, {"texts": np.array(t).reshape(1, -1).astype(np.int32)})[0])
     text_features = np.concatenate(text_features, axis=0)
     print(text_features.shape)
 

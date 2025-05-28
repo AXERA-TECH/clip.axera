@@ -10,6 +10,7 @@ clip-vit-l-14 demo on axera
 需要安装 clip , `pip install clip`
 
 ### 导出模型(PyTorch -> ONNX)
+运行前请注意export_onnx.py的注释，为了方便导出对clip源码进行了修改
 ```
 python export_onnx.py
 ```
@@ -27,7 +28,7 @@ python export_onnx.py
 
 #### 量化数据集准备
 - image数据
-下载dataset_v04.zip或自行准备
+下载[dataset_v04.zip](https://github.com/user-attachments/files/20480889/dataset_v04.zip)或自行准备
 - text数据
     ```
     python gen_text_calibration_data.py
@@ -43,7 +44,8 @@ python export_onnx.py
 #### 模型编译
 修改配置文件
 检查config.json 中 calibration_dataset 字段，将该字段配置的路径改为上一步准备的量化数据集存放路径
-pulsar2 build参考命令
+
+在编译环境中，执行pulsar2 build参考命令：
 ```
 # image encoder
 pulsar2 build --config build_config/clip_vit_l14_336px_image_encoder_all_u16_fc_u8.json --input clip_vit_l14_336px_image_encoder_batchfirst.onnx --output_dir build_output/image_encoder --output_name clip_vit_l14_336px_image_encoder_all_u16_fc_u8.axmodel
@@ -59,6 +61,7 @@ pulsar2 build --config build_config/clip_vit_l14_336px_text_encoder_u16.json --i
 
 
 ### Python API 运行
+需基于[PyAXEngine](https://github.com/AXERA-TECH/pyaxengine)在AX650N上进行部署,安装完成后运行main.py文件，得到以下输出demo
 ```shell
 $ python main.py 
 python main.py
