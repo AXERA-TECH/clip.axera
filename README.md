@@ -29,7 +29,7 @@ python export_onnx.py
 #### 量化数据集准备
 - image数据:
 
-下载[dataset_v04.zip](https://github.com/user-attachments/files/20480889/dataset_v04.zip)或自行准备
+    下载[dataset_v04.zip](https://github.com/user-attachments/files/20480889/dataset_v04.zip)或自行准备
 
 - text数据:
     ```
